@@ -47,3 +47,6 @@ group :development do
 end
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'devise'
+gem 'devise_token_auth'

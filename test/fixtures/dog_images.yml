@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dog: one
+  url: MyString
+  is_default: false
+
+two:
+  dog: two
+  url: MyString
+  is_default: false

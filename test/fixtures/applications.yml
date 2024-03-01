@@ -1,0 +1,57 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  status: MyString
+  application_date: 2024-03-01 14:18:36
+  interview_date: 2024-03-01 14:18:36
+  meet_greet_date: 2024-03-01 14:18:36
+  adoption_date: 2024-03-01 14:18:36
+  read_profile: false
+  address: MyString
+  current_pets: MyString
+  felony_conviction: false
+  felony_details: MyText
+  pet_prohibition: false
+  prohibition_details: MyText
+  previous_adoption: false
+  adoption_details: MyText
+  residence_type: MyString
+  landlord_permission: false
+  occupation: MyString
+  adoption_reason: MyText
+  dog_experience: MyText
+  stimulation_plan: MyText
+  household_children: false
+  household_allergies: false
+  household_agreement: false
+  sleeping_arrangement: MyText
+  vet_frequency: MyText
+
+two:
+  user: two
+  status: MyString
+  application_date: 2024-03-01 14:18:36
+  interview_date: 2024-03-01 14:18:36
+  meet_greet_date: 2024-03-01 14:18:36
+  adoption_date: 2024-03-01 14:18:36
+  read_profile: false
+  address: MyString
+  current_pets: MyString
+  felony_conviction: false
+  felony_details: MyText
+  pet_prohibition: false
+  prohibition_details: MyText
+  previous_adoption: false
+  adoption_details: MyText
+  residence_type: MyString
+  landlord_permission: false
+  occupation: MyString
+  adoption_reason: MyText
+  dog_experience: MyText
+  stimulation_plan: MyText
+  household_children: false
+  household_allergies: false
+  household_agreement: false
+  sleeping_arrangement: MyText
+  vet_frequency: MyText

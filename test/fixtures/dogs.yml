@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  age: MyString
+  sex: MyString
+  breed: MyString
+  size: MyString
+  description: MyText
+  status: MyString
+  energy_level: MyString
+  social_media_link: MyString
+  good_with_dogs: MyString
+  good_with_cats: MyString
+  good_with_kids: MyString
+  foster_location: MyString
+  medical_conditions: MyText
+  adoption_fee: 9.99
+  default_image_id: 1
+
+two:
+  name: MyString
+  age: MyString
+  sex: MyString
+  breed: MyString
+  size: MyString
+  description: MyText
+  status: MyString
+  energy_level: MyString
+  social_media_link: MyString
+  good_with_dogs: MyString
+  good_with_cats: MyString
+  good_with_kids: MyString
+  foster_location: MyString
+  medical_conditions: MyText
+  adoption_fee: 9.99
+  default_image_id: 1

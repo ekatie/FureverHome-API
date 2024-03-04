@@ -7,6 +7,7 @@ class Dog < ApplicationRecord
   has_many :dog_images, dependent: :destroy
   has_many :applications, dependent: :destroy
   has_many :users, through: :applications
+  
 
   validates :name, presence: true
   validates :age, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 20.0, message: "must be between 0 and 20.0" }
@@ -23,4 +24,9 @@ class Dog < ApplicationRecord
   validates :medical_conditions, presence: true
   validates :adoption_fee, presence: true, numericality: { greater_than_or_equal_to: 0 }
   
+  
+  def default_image_url
+    dog_images.find_by(is_default: true)&.url
+  end
+
 end

@@ -3,6 +3,7 @@ class Application < ApplicationRecord
   belongs_to :dog
 
   VALID_RESIDENCE_TYPES = ['rent', 'own'].freeze
+  VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High'].freeze
 
   validates :status, presence: true
   validates :read_profile, inclusion: { in: [true, false] }
@@ -27,6 +28,10 @@ class Application < ApplicationRecord
   validates :adoption_details_presence, if: :previous_adoption?
   validates :landlord_permission_presence, if: :residence_type_is_rental?
   validates :current_pets_details_presence, if: :current_pets?
+  validates :dog_age, presence: true
+  validates :dog_size, presence: true
+  validates :dog_energy_level, presence: true, inclusion: { in: Dog::VALID_ENERGY_LEVELS }
+  validates :dog_medical_conditions, presence: true
 
   private
 

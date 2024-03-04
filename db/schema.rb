@@ -77,17 +77,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_173223) do
 
   create_table "dogs", force: :cascade do |t|
     t.string "name", null: false
-    t.string "age", null: false
+    t.decimal "age", precision: 4, scale: 1, null: false
     t.string "sex", null: false
     t.string "breed", null: false
-    t.string "size", null: false
+    t.integer "size", null: false
     t.text "description", null: false
     t.string "status", default: "available", null: false
     t.string "energy_level", null: false
     t.string "social_media_link"
-    t.string "good_with_dogs", default: "untested", null: false
-    t.string "good_with_cats", default: "untested", null: false
-    t.string "good_with_kids", default: "untested", null: false
+    t.string "good_with_dogs", default: "Untested", null: false
+    t.string "good_with_cats", default: "Untested", null: false
+    t.string "good_with_kids", default: "Untested", null: false
     t.string "foster_location", null: false
     t.text "medical_conditions", null: false
     t.decimal "adoption_fee", null: false
@@ -96,9 +96,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_173223) do
     t.datetime "updated_at", null: false
     t.index ["default_image_id"], name: "index_dogs_on_default_image_id"
     t.check_constraint "energy_level::text = ANY (ARRAY['Low'::character varying, 'Medium'::character varying, 'High'::character varying, 'Very High'::character varying]::text[])", name: "check_dogs_energy_level"
-    t.check_constraint "good_with_cats::text = ANY (ARRAY['yes'::character varying, 'no'::character varying, 'sometimes'::character varying, 'untested'::character varying]::text[])", name: "check_good_with_cats_values"
-    t.check_constraint "good_with_dogs::text = ANY (ARRAY['yes'::character varying, 'no'::character varying, 'sometimes'::character varying, 'untested'::character varying]::text[])", name: "check_good_with_dogs_values"
-    t.check_constraint "good_with_kids::text = ANY (ARRAY['yes'::character varying, 'no'::character varying, 'sometimes'::character varying, 'untested'::character varying]::text[])", name: "check_good_with_kids_values"
+    t.check_constraint "good_with_cats::text = ANY (ARRAY['Yes'::character varying, 'No'::character varying, 'Sometimes'::character varying, 'Untested'::character varying]::text[])", name: "check_good_with_cats_values"
+    t.check_constraint "good_with_dogs::text = ANY (ARRAY['Yes'::character varying, 'No'::character varying, 'Sometimes'::character varying, 'Untested'::character varying]::text[])", name: "check_good_with_dogs_values"
+    t.check_constraint "good_with_kids::text = ANY (ARRAY['Yes'::character varying, 'No'::character varying, 'Sometimes'::character varying, 'Untested'::character varying]::text[])", name: "check_good_with_kids_values"
     t.check_constraint "sex::text = ANY (ARRAY['Male'::character varying, 'Female'::character varying]::text[])", name: "check_dogs_sex"
     t.check_constraint "status::text = ANY (ARRAY['Available'::character varying, 'Applications Being Reviewed'::character varying, 'Pending Adoption'::character varying, 'Adopted'::character varying]::text[])", name: "check_dogs_status"
   end

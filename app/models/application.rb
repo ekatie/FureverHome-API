@@ -23,11 +23,11 @@ class Application < ApplicationRecord
   validates :sleeping_arrangement, presence: true
   validates :vet_frequency, presence: true
   validates :residence_type, inclusion: { in: VALID_RESIDENCE_TYPES }, presence: true
-  validates :felony_details_presence, if: :felony_conviction?
-  validates :prohibition_details_presence, if: :pet_prohibition?
-  validates :adoption_details_presence, if: :previous_adoption?
-  validates :landlord_permission_presence, if: :residence_type_is_rental?
-  validates :current_pets_details_presence, if: :current_pets?
+  validate :felony_details_presence, if: :felony_conviction?
+  validate :prohibition_details_presence, if: :pet_prohibition?
+  validate :adoption_details_presence, if: :previous_adoption?
+  validate :landlord_permission_presence, if: :residence_type_is_rental?
+  validate :current_pets_details_presence, if: :current_pets?
   validates :dog_age, presence: true
   validates :dog_size, presence: true
   validates :dog_energy_level, presence: true, inclusion: { in: Dog::VALID_ENERGY_LEVELS }

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :dogs, through: :applications
 
   # Enums
-  enum user_type: { adopter: 0, admin: 1 }
+  enum user_type: { adopter: 'adopter', admin: 'admin' }
 
   # Validations
   validates :name, presence: true, length: { maximum: 100 }

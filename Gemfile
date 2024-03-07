@@ -48,7 +48,6 @@ end
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'devise'
-gem 'devise_token_auth'
-
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'jwt'

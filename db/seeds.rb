@@ -1,8 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
-require 'devise'
-
 User.destroy_all
 
 # Create a user as adopter
@@ -11,10 +9,8 @@ User.create!(
   user_type: 'adopter',
   name: 'Katie Kay',
   date_of_birth: '1988-04-05',
-  phone: '1234567890',
-  provider: 'email',
-  password: 'adopttest',
-  password_confirmation: 'adopttest'
+  phone: '123-456-7890',
+  password: 'adopt'
 )
 
 # Create a user as admin
@@ -23,10 +19,8 @@ User.create!(
   user_type: 'admin',
   name: 'Katie Nova',
   date_of_birth: '1988-04-05',
-  phone: '9876543210',
-  provider: 'email',
-  password: 'admintest',
-  password_confirmation: 'admintest'
+  phone: '987-654-3210',
+  password: 'admin'
 )
 
 Dog.destroy_all
@@ -153,10 +147,10 @@ dogs_data = [
     medical_conditions: "None", 
     adoption_fee: 750, 
     images: [
+      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_1.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_2.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_5.jpg?raw=true"
     ]
   },

@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  # Devise modules
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-  include DeviseTokenAuth::Concerns::User
+  # Modules
+  has_secure_password
 
   # Associations
   has_many :applications, dependent: :destroy
@@ -13,6 +12,7 @@ class User < ApplicationRecord
 
   # Validations
   validates :name, presence: true, length: { maximum: 100 }
-  validates :phone, presence: true, format: { with: /\A[0-9]+\z/ }, length: { maximum: 15 }
+  validates :phone, presence: true, format: { with: /\A\d{3}-\d{3}-\d{4}\z/}, length: { is: 12 }
+  validates :date_of_birth, presence: true
 
 end

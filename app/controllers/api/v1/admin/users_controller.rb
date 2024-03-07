@@ -1,6 +1,7 @@
 class Api::V1::Admin::UsersController < ApplicationController
   # Ensure that the user is an admin before allowing them to access the users
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
+  before_action :check_admin!
 
   def index
   end

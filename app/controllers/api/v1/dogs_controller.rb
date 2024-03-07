@@ -1,7 +1,6 @@
 class Api::V1::DogsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  
-  
+    
   # View a dog's details
   def show
     @dog = Dog.find(params[:id])

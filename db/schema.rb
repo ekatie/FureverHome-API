@@ -115,22 +115,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_173223) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", limit: 255, null: false
+    t.string "password_digest", null: false
     t.string "user_type", default: "adopter", null: false
     t.string "name", limit: 100, null: false
     t.date "date_of_birth", null: false
     t.string "phone", limit: 15, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
-    t.json "tokens"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
     t.check_constraint "user_type::text = ANY (ARRAY['adopter'::character varying, 'admin'::character varying]::text[])", name: "user_type_check"
   end
 

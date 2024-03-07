@@ -29,3 +29,5 @@
 /config/master.key
 
 .env
+
+/.generate_jwt_secret.rb

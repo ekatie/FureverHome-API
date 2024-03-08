@@ -121,9 +121,9 @@ dogs_data = [
     medical_conditions: "Eye issues - medication needed", 
     adoption_fee: 750, 
     images: [
+      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_2.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_1.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_2.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_3.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_5.jpg?raw=true"
     ]
@@ -175,8 +175,8 @@ dogs_data = [
     medical_conditions: "None", 
     adoption_fee: 850, 
     images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_1.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_2.jpg?raw=true",
+      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_1.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_3.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_5.jpg?raw=true"
@@ -231,10 +231,10 @@ dogs_data = [
     medical_conditions: "Allergies", 
     adoption_fee: 700, 
     images: [
+      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_3.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_1.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_5.jpg?raw=true"
     ]
   }

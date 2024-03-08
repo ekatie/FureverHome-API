@@ -2,17 +2,15 @@ Rails.application.routes.draw do
   get 'jwt_authentication/generate_token'
   get 'jwt_authentication/verify_token'
 
-  # Defines the root path route ("/")
-  root 'home#index'
-
     namespace :api do
     namespace :v1 do
+      root to: 'base#index'
+
       # Authentication routes
       post 'login', to: 'authentication#login'
            
       # Static pages routes
       get 'static_pages/about'
-      get 'static_pages/home'
 
       # Application resource routes
       resources :applications, only: [:create, :show, :index] do

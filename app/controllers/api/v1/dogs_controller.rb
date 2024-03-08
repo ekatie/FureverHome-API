@@ -18,13 +18,13 @@ class Api::V1::DogsController < ApplicationController
     @dog = Dog.find(params[:id])
   
     # Check if the dog is already favourited by the user
-    if current_user.favourite_dogs.exists?(@dog.id)
+    if @current_user.favourite_dogs.exists?(@dog.id)
       # If yes, remove it from the user's favourites
-      current_user.favourite_dogs.delete(@dog)
+      @current_user.favourite_dogs.delete(@dog)
       message = "Dog removed from favourites"
     else
       # If no, add it to the user's favourites
-      current_user.favourite_dogs << @dog
+      @current_user.favourite_dogs << @dog
       message = "Dog added to favourites"
     end
   

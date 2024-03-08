@@ -32,19 +32,4 @@ class Api::V1::ApplicationsController < ApplicationController
   def matches
   end
 
-  private
-
-  def check_adopter!
-    unless current_user.adopter?
-      render json: { error: 'Only adopters can perform this action' }, status: :forbidden
-    end
-  end
-
-  def authenticate_user!
-    token = request.headers['Authorization']&.split(' ')&.last
-    decoded_token = JwtAuthenticationController.new.verify_token(token)
-    @current_user = User.find(decoded_token['user_id']) if decoded_token
-    render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_user
-  end
-
 end

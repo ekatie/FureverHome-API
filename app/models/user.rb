@@ -5,7 +5,8 @@ class User < ApplicationRecord
   # Associations
   has_many :applications, dependent: :destroy
   has_many :dogs, through: :applications
-  has_and_belongs_to_many :favourite_dogs, class_name: 'Dog', join_table: 'favourite_dogs_users'
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_dogs, through: :favourites, source: :dog
 
   # Enums
   enum user_type: { adopter: 'adopter', admin: 'admin' }

@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
       # Admin namespace routes
       namespace :admin do
+        # Admin dashboard route
+        get 'dashboard', to: 'dashboard#index'
+
         resources :dogs, only: [:new, :create, :index, :show, :update]
         resources :applications, only: [:index, :show, :update]
         resources :users, only: [:index, :show, :update]

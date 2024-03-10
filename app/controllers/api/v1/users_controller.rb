@@ -5,8 +5,8 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      jwt = Auth.issue({user: user.id})
-      render json: {jwt: jwt}
+      jwt = JwtAuthenticationController.new.generate_token(user.id)
+      render json: {jwt: jwt}, status: :created
     else
       render json: {error: user.errors.full_messages}, status: 422
     end
@@ -37,7 +37,7 @@ class Api::V1::UsersController < ApplicationController
     end
     
     # Permit the session parameter
-    permitted_attributes += [:session]
+    # permitted_attributes += [:session]
 
     params.require(:user).permit(permitted_attributes)
   end

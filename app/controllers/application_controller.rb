@@ -19,11 +19,6 @@ class ApplicationController < ActionController::API
       Rails.logger.info "Decoded Token: #{decoded_token}"
       @current_user = User.find(decoded_token['user_id']) if decoded_token
       Rails.logger.info "Current User: #{@current_user}"
-
-
-      token = request.headers['Authorization']&.split(' ')&.last
-      decoded_token = JwtAuthenticationController.new.verify_token(token)
-      @current_user = User.find(decoded_token['user_id']) if decoded_token
       render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_user
     end
 

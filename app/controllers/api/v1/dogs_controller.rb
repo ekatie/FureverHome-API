@@ -1,16 +1,17 @@
 class Api::V1::DogsController < ApplicationController
+  before_action :set_current_user, only: [:index, :show]
   before_action :authenticate_user!, except: [:index, :show]
     
   # View a dog's details
   def show
     @dog = Dog.find(params[:id])
-    render json: @dog
+    render json: @dog, scope: @current_user
   end
   
   # View all dogs
   def index
     @dogs = Dog.all
-    render json: @dogs
+    render json: @dogs, each_serializer: DogSerializer, scope: @current_user
   end
   
   # Toggle dog's favourite status for current user
@@ -21,16 +22,24 @@ class Api::V1::DogsController < ApplicationController
     if @current_user.favourite_dogs.exists?(@dog.id)
       # If yes, remove it from the user's favourites
       @current_user.favourite_dogs.delete(@dog)
+      is_favourite = false
       message = "Dog removed from favourites"
     else
       # If no, add it to the user's favourites
       @current_user.favourite_dogs << @dog
+      is_favourite = true
       message = "Dog added to favourites"
     end
   
     # Respond with a message indicating the action performed
-    render json: { status: 'success', message: message, dog_id: @dog.id }
+    render json: { status: 'success', message: message, dog_id: @dog.id, is_favourite: is_favourite}
   end
+
+  # Fetch user's favourites
+  # def user_favourites
+  #   @favourites = @current_user.favourite_dogs
+  #   render json: @favourites
+  # end
 
   # Admin only
   

@@ -33,4 +33,8 @@ class Dog < ApplicationRecord
     dog_images.find_by(is_default: true)&.url
   end
 
+  def is_favourite(user)
+    user && user.favourite_dogs.exists?(self.id)
+  end
+
 end

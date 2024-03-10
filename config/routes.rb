@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
       # Authentication routes
       post 'login', to: 'authentication#login'
+      post 'auth/validate_token', to: 'authentication#validate_token'
            
       # Static pages routes
       get 'static_pages/about'
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
         end
       end
       
+      # Fetch user's favourites
+      get 'users/favourites', to: 'dogs#user_favourites'
+
       # Users resource routes
       resources :users, only: [:create, :update, :show]
 

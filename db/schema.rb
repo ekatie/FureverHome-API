@@ -34,32 +34,32 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_232851) do
     t.datetime "meet_greet_date"
     t.datetime "adoption_date"
     t.boolean "read_profile"
-    t.string "address", null: false
-    t.boolean "current_pets", null: false
+    t.string "address"
+    t.boolean "current_pets"
     t.text "current_pets_details"
-    t.boolean "felony_conviction", null: false
+    t.boolean "felony_conviction"
     t.text "felony_details"
-    t.boolean "pet_prohibition", null: false
+    t.boolean "pet_prohibition"
     t.text "prohibition_details"
-    t.boolean "previous_adoption", null: false
+    t.boolean "previous_adoption"
     t.text "adoption_details"
-    t.string "residence_type", null: false
+    t.string "residence_type"
     t.boolean "landlord_permission"
-    t.string "occupation", null: false
-    t.text "adoption_reason", null: false
-    t.text "dog_experience", null: false
-    t.text "stimulation_plan", null: false
-    t.boolean "household_children", null: false
-    t.boolean "household_allergies", null: false
-    t.boolean "household_agreement", null: false
-    t.text "sleeping_arrangement", null: false
-    t.text "vet_frequency", null: false
+    t.string "occupation"
+    t.text "adoption_reason"
+    t.text "dog_experience"
+    t.text "stimulation_plan"
+    t.boolean "household_children"
+    t.boolean "household_allergies"
+    t.boolean "household_agreement"
+    t.text "sleeping_arrangement"
+    t.text "vet_frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "dog_age", null: false
-    t.string "dog_size", null: false
-    t.string "dog_energy_level", null: false
-    t.text "dog_medical_conditions", null: false
+    t.string "dog_age"
+    t.string "dog_size"
+    t.string "dog_energy_level"
+    t.text "dog_medical_conditions"
     t.bigint "dog_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
     t.check_constraint "dog_energy_level::text = ANY (ARRAY['Low'::character varying, 'Medium'::character varying, 'High'::character varying, 'Very High'::character varying, 'Flexible'::character varying]::text[])", name: "check_applications_dog_energy_level"

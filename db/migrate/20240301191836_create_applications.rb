@@ -7,7 +7,7 @@ class CreateApplications < ActiveRecord::Migration[7.0]
       t.datetime :interview_date
       t.datetime :meet_greet_date
       t.datetime :adoption_date
-      t.boolean :read_profile, null: false
+      t.boolean :read_profile
       t.string :address, null: false
       t.boolean :current_pets, null: false
       t.text :current_pets_details
@@ -31,6 +31,6 @@ class CreateApplications < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_check_constraint :applications, "residence_type IN ('rent', 'own')", name: 'check_residence_type_values'
+    add_check_constraint :applications, "residence_type IN ('Rent', 'Own')", name: 'check_residence_type_values'
   end
 end

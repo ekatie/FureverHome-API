@@ -2,7 +2,7 @@ class Dog < ApplicationRecord
   # Constants
   VALID_SEXES = ['Male', 'Female'].freeze
   VALID_STATUSES = ['Available', 'Applications Being Reviewed', 'Pending Adoption', 'Adopted'].freeze
-  VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High'].freeze
+  VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High', 'Flexible'].freeze
   VALID_GOOD_WITH_VALUES = ['Yes', 'No', 'Sometimes', 'Untested'].freeze
 
   # Associations

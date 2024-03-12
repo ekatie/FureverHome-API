@@ -31,4 +31,8 @@ class ApplicationController < ActionController::API
         render json: { error: 'You are not authorized to perform this action' }, status: :forbidden
       end
     end
+    
+    def current_user
+      @current_user
+    end
 end

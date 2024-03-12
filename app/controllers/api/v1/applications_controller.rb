@@ -6,6 +6,13 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def create
+    application = @current_user.applications.new(application_params)
+    if application.save
+      render json: application, status: :created
+    else
+      Rails.logger.debug application.errors.full_messages.join(", ")
+      render json: { errors: application.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -30,6 +37,12 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def matches
+  end
+
+  private
+
+  def application_params
+    params.require(:application).permit(:read_profile, :address, :current_pets, :current_pets_details, :felony_conviction, :felony_details, :pet_prohibition, :prohibition_details, :previous_adoption, :adoption_details, :residence_type, :landlord_permission, :occupation, :adoption_reason, :dog_experience, :stimulation_plan, :household_children, :household_allergies, :household_agreement, :sleeping_arrangement, :vet_frequency, {dog_age: []}, {dog_size: []}, :dog_energy_level, :dog_medical_conditions)
   end
 
 end

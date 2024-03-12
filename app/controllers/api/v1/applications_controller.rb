@@ -36,12 +36,6 @@ def update
 end
 
   def index
-    # applications = current_user.applications
-    # if applications.present?
-    #   render json: applications, each_serializer: ApplicationSerializer, status: :ok
-    # else
-    #   render json: { error: 'No applications found' }, status: :not_found
-    # end
   end
   
   def cancel
@@ -60,7 +54,24 @@ end
   end
 
   def matches
+    application = current_user.applications.find(params[:id])
+    available_dogs = Dog.where(status: 'Available')
+    matches = MatchCalculator.match(application, available_dogs)
+
+  # Serialize each dog and add the match_percentage
+  serialized_matches = matches.map do |match|
+    serialized_dog = ActiveModelSerializers::SerializableResource.new(
+      match[:dog],
+      serializer: DogSerializer,
+      scope: current_user
+    ).as_json
+    serialized_dog.merge(match_percentage: match[:match_percentage])
   end
+  
+  render json: serialized_matches, status: :ok
+  rescue ActiveRecord::RecordNotFound
+  render json: { error: 'Application not found' }, status: :not_found
+end
 
   private
 

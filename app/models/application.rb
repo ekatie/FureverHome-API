@@ -1,12 +1,14 @@
 class Application < ApplicationRecord
   belongs_to :user
-  belongs_to :dog
+  belongs_to :dog, optional: true
 
-  VALID_RESIDENCE_TYPES = ['rent', 'own'].freeze
-  VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High'].freeze
+  before_validation :set_default_status, on: :create
+
+  VALID_RESIDENCE_TYPES = ['Rent', 'Own'].freeze
+  VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High', 'Flexible'].freeze
 
   validates :status, presence: true
-  validates :read_profile, inclusion: { in: [true, false] }
+  validates :read_profile, inclusion: { in: [true, false] }, if: :dog_selected?
   validates :address, presence: true
   validates :current_pets, inclusion: { in: [true, false] }
   validates :felony_conviction, inclusion: { in: [true, false] }
@@ -33,6 +35,10 @@ class Application < ApplicationRecord
   validates :dog_energy_level, presence: true, inclusion: { in: Dog::VALID_ENERGY_LEVELS }
   validates :dog_medical_conditions, presence: true
 
+  def dog_selected?
+    dog_id.present?
+  end
+
   private
 
   def felony_details_presence
@@ -40,11 +46,11 @@ class Application < ApplicationRecord
   end
 
   def prohibition_details_presence
-    errors.add(:pet_prohibition_details, "can't be blank") if pet_prohibition_details.blank?
+    errors.add(:prohibition_details, "can't be blank") if prohibition_details.blank?
   end
 
   def adoption_details_presence
-    errors.add(:previous_adoption_details, "can't be blank") if previous_adoption_details.blank?
+    errors.add(:adoption_details, "can't be blank") if adoption_details.blank?
   end
 
   def landlord_permission_presence
@@ -56,6 +62,10 @@ class Application < ApplicationRecord
   end
 
   def residence_type_is_rental?
-    residence_type == 'rent'
+    residence_type == 'Rent'
+  end
+
+  def set_default_status
+    self.status ||= 'pending'
   end
 end

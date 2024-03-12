@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_04_173223) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_11_232851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_173223) do
     t.datetime "interview_date"
     t.datetime "meet_greet_date"
     t.datetime "adoption_date"
-    t.boolean "read_profile", null: false
+    t.boolean "read_profile"
     t.string "address", null: false
     t.boolean "current_pets", null: false
     t.text "current_pets_details"
@@ -60,9 +60,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_173223) do
     t.string "dog_size", null: false
     t.string "dog_energy_level", null: false
     t.text "dog_medical_conditions", null: false
+    t.bigint "dog_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
-    t.check_constraint "dog_energy_level::text = ANY (ARRAY['Low'::character varying, 'Medium'::character varying, 'High'::character varying, 'Very High'::character varying]::text[])", name: "check_applications_dog_energy_level"
-    t.check_constraint "residence_type::text = ANY (ARRAY['rent'::character varying, 'own'::character varying]::text[])", name: "check_residence_type_values"
+    t.check_constraint "dog_energy_level::text = ANY (ARRAY['Low'::character varying, 'Medium'::character varying, 'High'::character varying, 'Very High'::character varying, 'Flexible'::character varying]::text[])", name: "check_applications_dog_energy_level"
+    t.check_constraint "residence_type::text = ANY (ARRAY['Rent'::character varying, 'Own'::character varying]::text[])", name: "check_residence_type_values"
   end
 
   create_table "dog_images", force: :cascade do |t|

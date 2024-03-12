@@ -1,10 +1,10 @@
 class AddDetailsToApplications < ActiveRecord::Migration[7.0]
   def up
     # Adding new columns
-    add_column :applications, :dog_age, :string, null: false
-    add_column :applications, :dog_size, :string, null: false
-    add_column :applications, :dog_energy_level, :string, null: false
-    add_column :applications, :dog_medical_conditions, :text, null: false
+    add_column :applications, :dog_age, :string
+    add_column :applications, :dog_size, :string
+    add_column :applications, :dog_energy_level, :string
+    add_column :applications, :dog_medical_conditions, :text
 
     # Adding check constraint
     add_check_constraint :applications, "dog_energy_level IN ('Low', 'Medium', 'High', 'Very High', 'Flexible')", name: 'check_applications_dog_energy_level'

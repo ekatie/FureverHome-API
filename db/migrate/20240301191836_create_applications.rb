@@ -8,26 +8,26 @@ class CreateApplications < ActiveRecord::Migration[7.0]
       t.datetime :meet_greet_date
       t.datetime :adoption_date
       t.boolean :read_profile
-      t.string :address, null: false
-      t.boolean :current_pets, null: false
+      t.string :address
+      t.boolean :current_pets
       t.text :current_pets_details
-      t.boolean :felony_conviction, null: false
+      t.boolean :felony_conviction
       t.text :felony_details
-      t.boolean :pet_prohibition, null: false
+      t.boolean :pet_prohibition
       t.text :prohibition_details
-      t.boolean :previous_adoption, null: false
+      t.boolean :previous_adoption
       t.text :adoption_details
-      t.string :residence_type, null: false
+      t.string :residence_type
       t.boolean :landlord_permission
-      t.string :occupation, null: false
-      t.text :adoption_reason, null: false
-      t.text :dog_experience, null: false
-      t.text :stimulation_plan, null: false
-      t.boolean :household_children, null: false
-      t.boolean :household_allergies, null: false
-      t.boolean :household_agreement, null: false
-      t.text :sleeping_arrangement, null: false
-      t.text :vet_frequency, null: false
+      t.string :occupation
+      t.text :adoption_reason
+      t.text :dog_experience
+      t.text :stimulation_plan
+      t.boolean :household_children
+      t.boolean :household_allergies
+      t.boolean :household_agreement
+      t.text :sleeping_arrangement
+      t.text :vet_frequency
 
       t.timestamps
     end

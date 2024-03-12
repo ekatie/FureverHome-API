@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get 'static_pages/about'
 
       # Application resource routes
-      resources :applications, only: [:create, :show, :index] do
+      resources :applications, only: [:create, :show, :update, :index] do
         member do
           post 'cancel'
           post 'select_match'

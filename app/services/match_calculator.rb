@@ -16,53 +16,64 @@ class MatchCalculator
     'Senior' => 8..Float::INFINITY
   }.freeze
 
+  GOOD_WITH_VALUES_SCORE = {
+    'Yes' => 2,
+    'Sometimes' => 1
+    'No' => -1,
+    'Untested' => 0
+  }.freeze
+
 def self.match(application, dogs)
   dogs.map do |dog|
     match_score = 0
-    total_criteria = 4
+    total_criteria = 0
 
-    # Match energy level
-    match_score += 1 if application.dog_energy_level == dog.energy_level
-
-    # Match size
-    if application.dog_size.any?
-      application.dog_size.each do |size|
-        range = SIZE_RANGES[size]
-        match_score += 1 if range.cover?(dog.size)
-      end
-    end
-
-    # Match age
-    if application.dog_age.any?
-      application.dog_age.each do |age|
-        range = AGE_RANGES[age]
-        match_score += 1 if range.cover?(dog.age)
-      end
-    end
-
-    # Match medical conditions
-    if application.dog_medical_conditions != 'No' || (application.dog_medical_conditions == 'Maybe' && dog.medical_conditions != 'None')
+    # Energy level matching
+    if application.dog_energy_level == dog.energy_level
+      match_score += 2
+    elsif application.dog_energy_level == 'Flexible'
       match_score += 1
+    else
+      match_score -= 1
+    end
+    total_criteria += 2
+
+
+    # Size and Age matching
+    [application.dog_size, application.dog_age].each do |preferences|
+      preferences.each do |preference|
+        range = preference == 'size' ? SIZE_RANGES[preference] : AGE_RANGES[preference]
+        if range&.cover?(dog.send(preference))
+          match_score += 2
+        end
+      end
+      total_criteria += 2 * preferences.size
     end
 
-    if application.current_pets
-      total_criteria += 1
+    # Compatibility with cats and dogs
+    ['cats', 'dogs'].each do |pet_type|
+      if application.current_pets_details&.downcase&.split&.any? { |word| word.match(/#{pet_type}|#{pet_type.singularize}/) }
+        good_with_value = dog.send("good_with_#{pet_type}")
+        match_score += GOOD_WITH_VALUES_SCORE[good_with_value] || 0
+        total_criteria += 2
+      end
     end
 
-    # Match compatibility with cats
-    if application.current_pets && application.current_pets_details.include?("cats")
-      match_score += 1 if dog.good_with_cats == 'Yes'
-    end
-
+    # Compatibility with children
     if application.household_children
+      match_score += GOOD_WITH_VALUES_SCORE[dog.good_with_kids] || 0
+      total_criteria += 2
+    end
+
+    # Consideration for medical conditions
+    if application.dog_medical_conditions == 'Yes' || application.dog_medical_conditions == 'Maybe'
+      match_score += 1
       total_criteria += 1
     end
 
-     # Match compatibility with children
-     match_score += 1 if application.household_children && dog.good_with_kids == 'Yes'
-
-    # Calculate match percentage no decimal points
-    match_percentage = ((match_score.to_f / total_criteria) * 100).round
+    # Calculate match percentage, ensuring total_criteria is never zero to avoid division by zero
+    total_criteria = 1 if total_criteria.zero?
+    match_percentage = (match_score.to_f / total_criteria * 100).round
 
     { dog: dog, match_percentage: match_percentage }
 

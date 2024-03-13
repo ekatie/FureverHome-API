@@ -18,7 +18,7 @@ class MatchCalculator
 
   GOOD_WITH_VALUES_SCORE = {
     'Yes' => 2,
-    'Sometimes' => 1
+    'Sometimes' => 1,
     'No' => -1,
     'Untested' => 0
   }.freeze
@@ -38,16 +38,26 @@ def self.match(application, dogs)
     end
     total_criteria += 2
 
-
-    # Size and Age matching
-    [application.dog_size, application.dog_age].each do |preferences|
-      preferences.each do |preference|
-        range = preference == 'size' ? SIZE_RANGES[preference] : AGE_RANGES[preference]
-        if range&.cover?(dog.send(preference))
-          match_score += 2
-        end
+    # Age Matching
+    application.dog_age.each do |age_preference|
+      age_range = AGE_RANGES[age_preference]
+      if age_range&.cover?(dog.age)
+        match_score += 2
+      else
+        match_score -= 1
       end
-      total_criteria += 2 * preferences.size
+      total_criteria += 2
+    end
+
+    # Size Matching
+    application.dog_size.each do |size_preference|
+      size_range = SIZE_RANGES[size_preference]
+      if size_range&.cover?(dog.size)
+        match_score += 2
+      else
+        match_score -= 1
+      end
+      total_criteria += 2
     end
 
     # Compatibility with cats and dogs

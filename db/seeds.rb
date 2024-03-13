@@ -269,7 +269,7 @@ dogs_data = [
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_2.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_5.jpg?raw=true"
     ]
-  }
+  },
   {
     name: "Luna",
     age: 4,
@@ -484,7 +484,7 @@ dogs_data.each do |dog_data|
     energy_level: dog_data[:energy_level], 
     foster_location: dog_data[:foster_location], 
     medical_conditions: dog_data[:medical_conditions], 
-    adoption_fee: dog_data[:adoption_fee]
+    adoption_fee: dog_data[:adoption_fee],
     good_with_dogs: dog_data[:good_with_dogs],
     good_with_cats: dog_data[:good_with_cats],
     good_with_kids: dog_data[:good_with_kids],

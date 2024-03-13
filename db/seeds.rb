@@ -351,26 +351,6 @@ dogs_data = [
     ]
   },
   {
-    name: "Zoe",
-    age: 7,
-    sex: "Female",
-    breed: "Toy Poodle",
-    size: 15,
-    description: "Zoe is a sweet and sophisticated lady who loves her walks just as much as her nap times. She's looking for a quiet home where she can be your one and only.",
-    status: "Available",
-    energy_level: "Low",
-    foster_location: "Kitchener",
-    medical_conditions: "Arthritis",
-    adoption_fee: 600,
-    good_with_dogs: "No",
-    good_with_cats: "No",
-    good_with_kids: "No",
-    social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Zoe.jpg?raw=true",
-    ]
-  },
-  {
     name: "Rocky",
     age: 1,
     sex: "Male",

@@ -19,6 +19,7 @@ class MatchCalculator
 def self.match(application, dogs)
   dogs.map do |dog|
     match_score = 0
+    total_criteria = 4
 
     # Match energy level
     match_score += 1 if application.dog_energy_level == dog.energy_level
@@ -44,16 +45,24 @@ def self.match(application, dogs)
       match_score += 1
     end
 
+    if application.current_pets
+      total_criteria += 1
+    end
+
     # Match compatibility with cats
     if application.current_pets && application.current_pets_details.include?("cats")
       match_score += 1 if dog.good_with_cats == 'Yes'
     end
 
+    if application.household_children
+      total_criteria += 1
+    end
+
      # Match compatibility with children
      match_score += 1 if application.household_children && dog.good_with_kids == 'Yes'
 
-     total_criteria = 6 # Total number of criteria
-     match_percentage = (match_score.to_f / total_criteria) * 100
+    # Calculate match percentage no decimal points
+    match_percentage = ((match_score.to_f / total_criteria) * 100).round
 
     { dog: dog, match_percentage: match_percentage }
 

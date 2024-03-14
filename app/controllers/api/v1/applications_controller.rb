@@ -64,7 +64,7 @@ end
     ).as_json
     serialized_dog.merge(match_percentage: match[:match_percentage])
   end
-  
+
   render json: serialized_matches, status: :ok
   rescue ActiveRecord::RecordNotFound
   render json: { error: 'Application not found' }, status: :not_found

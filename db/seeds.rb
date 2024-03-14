@@ -51,7 +51,7 @@ dogs_data = [
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_5.jpg?raw=true"
     ]
-  }, # line 56
+  },
   { 
     name: "Belle", 
     age: 2, 
@@ -87,7 +87,7 @@ dogs_data = [
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_4.jpg?raw=true",
       "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_5.jpg?raw=true"
     ]
-  }, # line 88
+  },
   { 
     name: "Scotti", 
     age: 1.5, 
@@ -250,7 +250,7 @@ dogs_data = [
     sex: "Female", 
     breed: "Labrador Hound Mix", 
     size: 38, 
-    description: "Bella is beautiful and she knows it! But she doesn ' t care on ounce about that; all she wants to know is who will provide her with her next cuddles, and when. This sweet girl gets along well with other dogs, and really couldn't care less about friends of the feline variety. Her favourite thing is humans, especially those who will give her lots of love. Vera loves to cuddle!
+    description: "Bella is beautiful and she knows it! But she doesn't care on ounce about that; all she wants to know is who will provide her with her next cuddles, and when. This sweet girl gets along well with other dogs, and really couldn't care less about friends of the feline variety. Her favourite thing is humans, especially those who will give her lots of love. Bella loves to cuddle!
 
     This darling dog will positively thrive if she's adopted by a person or family who will provide her with a tons of affection and attention. The more time spent with her human(s), the better, so if they're home a lot or can take her to work with them, life will be perfect. For everyone.", 
     status: "Available", 

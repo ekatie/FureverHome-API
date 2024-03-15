@@ -9,9 +9,11 @@ class Dog < ApplicationRecord
   has_many :dog_images, dependent: :destroy
   has_many :applications, dependent: :destroy
   has_many :users, through: :applications
-  
-  has_many :favourites, dependent: :destroy
+    has_many :favourites, dependent: :destroy
   has_many :favourited_by_users, through: :favourites, source: :user
+
+  # Scopes
+  scope :available, -> { where(status: 'Available') }
 
   # Validations
   validates :name, presence: true

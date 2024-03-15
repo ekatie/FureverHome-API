@@ -15,7 +15,7 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def create
-    application = current_user.applications.new(status: 'pending')
+    application = current_user.applications.new(status: 'Pending')
 
     if application.save
       render json: application, status: :created

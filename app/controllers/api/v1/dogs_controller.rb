@@ -10,7 +10,7 @@ class Api::V1::DogsController < ApplicationController
   
   # View all dogs
   def index
-    @dogs = Dog.all
+    @dogs = Dog.available
     render json: @dogs, each_serializer: DogSerializer, scope: @current_user
   end
   

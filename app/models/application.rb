@@ -6,7 +6,7 @@ class Application < ApplicationRecord
   
   VALID_RESIDENCE_TYPES = ['Rent', 'Own'].freeze
   VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High', 'Flexible'].freeze
-  VALID_STATUSES = ['not started', 'pending', 'pending dog selection', 'submitted', 'under review', 'approved', 'rejected', 'cancelled'].freeze
+  VALID_STATUSES = ['Not Started', 'Pending', 'Pending Dog Selection', 'Submitted', 'Under Review', 'Approved', 'Rejected', 'Cancelled'].freeze
 
   before_validation :set_default_status, on: :create
 
@@ -59,6 +59,6 @@ class Application < ApplicationRecord
   end
 
   def set_default_status
-    self.status ||= 'pending'
+    self.status ||= 'Pending'
   end
 end

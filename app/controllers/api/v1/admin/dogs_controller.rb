@@ -16,6 +16,12 @@ class Api::V1::Admin::DogsController < ApplicationController
   end
 
   def create
+    @dog = Dog.new(dog_params)
+    if @dog.save
+      render json: @dog, serializer: DogSerializer, status: :created
+    else
+      render json: { errors: @dog.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def update

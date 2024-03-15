@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       end
       
       # Dogs resource routes
-      resources :dogs, only: [:new, :create, :edit, :update, :show, :index] do
+      resources :dogs, only: [:show, :index] do
         member do
           post 'favourite'
         end

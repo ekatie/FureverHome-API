@@ -43,7 +43,7 @@ Rails.application.routes.draw do
         # Admin dashboard route
         get 'dashboard', to: 'dashboard#index'
 
-        resources :dogs, only: [:new, :create, :index, :show, :update]
+        resources :dogs, only: [:create, :index, :show, :update]
         resources :applications, only: [:index, :show, :update]
         resources :users, only: [:index, :show, :update]
       end

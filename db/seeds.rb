@@ -2,9 +2,12 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 User.destroy_all
+Dog.destroy_all
+DogImage.destroy_all
+Application.destroy_all
 
 # Create a user as adopter
-User.create!(
+user_katie = User.create!(
   email: 'katie@adopt.com',
   user_type: 'adopter',
   name: 'Katie Kay',
@@ -14,7 +17,7 @@ User.create!(
 )
 
 # Create a user as admin
-User.create!(
+user_admin = User.create!(
   email: 'katie@admin.com',
   user_type: 'admin',
   name: 'Katie Nova',
@@ -23,8 +26,19 @@ User.create!(
   password: 'admin'
 )
 
-Dog.destroy_all
-DogImage.destroy_all
+adopter_emails = ['barkley.james@example.com', 'chase.pawter@example.com', 'retriever.beth@example.com', 'russell.terri@example.com', 'collie.mckay@example.com']
+adopter_users = adopter_emails.map do |email|
+  name_parts = email.split('@').first.split('.').map(&:capitalize).join(' ')
+  User.create!(
+    email: email, 
+    password: 'password', 
+    user_type: 'adopter', 
+    name: name_parts,
+    date_of_birth: '1990-01-01', 
+    phone: '555-555-5555'
+  )
+end
+
 
 # Dog data
 dogs_data = [
@@ -120,6 +134,7 @@ dogs_data = [
     description: "Krash's small body contains the biggest heart ever - he a total sweetheart and just can't get enough pets, cuddles, lap-time, or kisses (and he won't hesitate to let you know if he's lacking in any of the above!). He would no doubt make a great companion for someone who is home most of the time (or can take him out and about with them) and has lots of affection to give!
 
     Krash is house-trained and has been doing all his business outdoors since day one.
+
     He is also crate-trained and settles down quickly - no whining, barking or protest of any kind!
     
     Krash is a bit timid with new people at first but warms up surprisingly quickly if he's given a chance to take things at his own pace. He seems to like people quite a bit actually and hasn't has any issues with anyone he's met so far! Too much enthusiasm or sudden movements toward him when he's meeting new people tend to make him a bit skittish, but if he's allowed to approach as he feels ready then everything goes smoothly. He seems to be learning with each interaction that people are friendly and nothing to be scared of, and he perks up quite a bit after each positive encounter!
@@ -151,11 +166,15 @@ dogs_data = [
     breed: "Corgi, Labrador Mix ", 
     size: 25, 
     description: "Charmeuse is a super sweet, chill, and confident pup. She looooves belly rubs and pets, the squeaky toys and balls she's been given to play with, and sprawling out on the floor with froggy legs (so cute!). She's quite content to relax and nap, as long as she gets some lovin' every now and then.
+
     Charmeuse is quite brave too! She showed a bit of uncertainty with new things (elevators, automatic doors, etc.) at first, but approached with caution to check things out and has (so far) decided there's nothing scary going on. After less than 48 hours, she's already getting on the elevator first and showing confidence both indoors and out! (I expected her to bolt when I used our VERY loud blender, but after an initial jolt from surprise, she just stared at it curiously with her tail wagging. Wow!)
     She is for sure food motivated, and is always around when food is being prepared or eaten, but listens when she's told no.
+
     Charmeuse shows evidence of prior training and is housebroken. She's fully potty trained and will let us know if she needs to go out; she knows “Sit” and shows manners when in front of a door by sitting nicely to show she's ready to go.
+
     No issues with the crate at all! She goes in herself without prompting throughout the day. At night, she gets in easily, especially if motivated with a treat. No fuss, no whining. She settles in quickly.
     Leash manners are minimal - she gets excited and curious, zigzagging and pulling to check things out. She is also super intrigued by squirrels, birds and other wildlife, and really wants to chase them. We'll work on this for sure!
+
     Brief (distanced) encounters with other dogs and people went really well. She seems to be super friendly with both people and other dogs (even when they're being reactive/vocal). No reactions to bikes, joggers, etc. on walks. The only thing that made her a bit nervous was the garbage truck (noisy!) but she didn't let it bother her for long, especially after a soothing word or two.", 
     status: "Available", 
     energy_level: "Medium", 
@@ -452,30 +471,189 @@ dogs_data = [
   }
 ]
 
-dogs_data.each do |dog_data|
-  dog = Dog.create!(
-    name: dog_data[:name], 
-    age: dog_data[:age], 
-    sex: dog_data[:sex], 
-    breed: dog_data[:breed], 
-    size: dog_data[:size], 
-    description: dog_data[:description], 
-    status: dog_data[:status], 
-    energy_level: dog_data[:energy_level], 
-    foster_location: dog_data[:foster_location], 
-    medical_conditions: dog_data[:medical_conditions], 
-    adoption_fee: dog_data[:adoption_fee],
-    good_with_dogs: dog_data[:good_with_dogs],
-    good_with_cats: dog_data[:good_with_cats],
-    good_with_kids: dog_data[:good_with_kids],
-    social_media_link: dog_data[:social_media_link],
-  )
-
-  dog_data[:images].each_with_index do |image_url, index|
-    DogImage.create!(
-      dog_id: dog.id, 
-      url: image_url, 
-      is_default: index.zero? # Mark the first image as default
-    )
+dogs = dogs_data.map do |dog_data|
+  dog = Dog.create!(dog_data.except(:images))
+  dog_data[:images].each do |image_url|
+    DogImage.create!(dog_id: dog.id, url: image_url, is_default: dog_data[:images].first == image_url)
   end
+  dog
+end
+
+# dogs_data.each do |dog_data|
+#   dog = Dog.create!(
+#     name: dog_data[:name], 
+#     age: dog_data[:age], 
+#     sex: dog_data[:sex], 
+#     breed: dog_data[:breed], 
+#     size: dog_data[:size], 
+#     description: dog_data[:description], 
+#     status: dog_data[:status], 
+#     energy_level: dog_data[:energy_level], 
+#     foster_location: dog_data[:foster_location], 
+#     medical_conditions: dog_data[:medical_conditions], 
+#     adoption_fee: dog_data[:adoption_fee],
+#     good_with_dogs: dog_data[:good_with_dogs],
+#     good_with_cats: dog_data[:good_with_cats],
+#     good_with_kids: dog_data[:good_with_kids],
+#     social_media_link: dog_data[:social_media_link],
+#   )
+
+#   dog_data[:images].each_with_index do |image_url, index|
+#     DogImage.create!(
+#       dog_id: dog.id, 
+#       url: image_url, 
+#       is_default: index.zero? # Mark the first image as default
+#     )
+#   end
+# end
+
+applications_data = [
+  {
+    user_id: adopter_users[0].id,
+    dog_id: dogs[0].id, # Acorn
+    status: 'Pending',
+    created_at: '2024-02-28',
+    updated_at: '2024-03-02',
+    read_profile: true,
+    address: "123 Bark Street, Toronto, ON",
+    current_pets: false,
+    felony_conviction: false,
+    pet_prohibition: false,
+    previous_adoption: false,
+    residence_type: "Rent",
+    landlord_permission: true,
+    occupation: "Software Developer",
+    adoption_reason: "Looking for a companion",
+    dog_experience: "Grew up with dogs",
+    stimulation_plan: "Daily walks and playtime",
+    household_children: false,
+    household_allergies: false,
+    household_agreement: true,
+    sleeping_arrangement: "Dog bed in my bedroom",
+    vet_frequency: "Yearly checkups",
+    dog_age: ["Young", "Adult"],
+    dog_size: ["Small"],
+    dog_energy_level: "Medium",
+    dog_medical_conditions: "No"
+  },
+  {
+    user_id: adopter_users[1].id,
+    dog_id: dogs[6].id, # Luna
+    status: 'Pending Dog Selection',
+    created_at: '2024-03-01',
+    updated_at: '2024-03-01',
+    read_profile: true,
+    address: "345 Moonlight Road, Toronto, ON",
+    current_pets: true,
+    current_pets_details: "An old cat who prefers to keep to herself",
+    felony_conviction: false,
+    pet_prohibition: false,
+    previous_adoption: false,
+    residence_type: "Own",
+    landlord_permission: nil,
+    occupation: "Astronomer",
+    adoption_reason: "Seeking a lively companion for night walks",
+    dog_experience: "Owned Huskies in the past",
+    stimulation_plan: "Nightly walks under the stars, plenty of playtime",
+    household_children: false,
+    household_allergies: false,
+    household_agreement: true,
+    sleeping_arrangement: "Own dog bed, but welcome in bed",
+    vet_frequency: "Yearly check-ups and as needed",
+    dog_age: ["Adult"],
+    dog_size: ["Medium"],
+    dog_energy_level: "High",
+    dog_medical_conditions: "Maybe"
+  },
+  {
+    user_id: adopter_users[2].id,
+    dog_id: dogs[7].id, # Max
+    status: 'Submitted',
+    created_at: '2024-02-20',
+    updated_at: '2024-02-23',
+    read_profile: true,
+    address: "678 Fetch Ave, Mississauga, ON",
+    current_pets: false,
+    felony_conviction: false,
+    pet_prohibition: false,
+    previous_adoption: true,
+    adoption_details: "Adopted a senior dog two years ago",
+    residence_type: "Rent",
+    landlord_permission: true,
+    occupation: "School Teacher",
+    adoption_reason: "Wish to provide a loving home to another dog",
+    dog_experience: "Grew up with dogs, previous experience with adoption",
+    stimulation_plan: "Daily walks, playtime in the park, regular training sessions",
+    household_children: true,
+    household_allergies: false,
+    household_agreement: true,
+    sleeping_arrangement: "Dog bed in the bedroom",
+    vet_frequency: "Yearly vaccinations and check-ups, as needed",
+    dog_age: ["Young"],
+    dog_size: ["Large"],
+    dog_energy_level: "Medium",
+    dog_medical_conditions: "No"
+  },
+  {
+    user_id: adopter_users[3].id,
+    dog_id: dogs[8].id, # Buddy
+    status: 'Submitted',
+    created_at: '2024-03-05',
+    updated_at: '2024-03-06',
+    read_profile: true,
+    address: "910 Trail Sniffer Ln, Hamilton, ON",
+    current_pets: true,
+    current_pets_details: "A playful terrier who loves making new friends",
+    felony_conviction: false,
+    pet_prohibition: false,
+    previous_adoption: false,
+    residence_type: "Own",
+    landlord_permission: nil,
+    occupation: "Wildlife Photographer",
+    adoption_reason: "Looking for an adventurous companion for nature walks",
+    dog_experience: "Grew up in a household with several dogs, familiar with training",
+    stimulation_plan: "Daily hikes and exploration in nature reserves",
+    household_children: false,
+    household_allergies: false,
+    household_agreement: true,
+    sleeping_arrangement: "A cozy dog bed next to my own",
+    vet_frequency: "Annual checkups and vaccinations, immediate care if needed",
+    dog_age: ["Adult"],
+    dog_size: ["Medium"],
+    dog_energy_level: "Low",
+    dog_medical_conditions: "No"
+  },
+  {
+    user_id: adopter_users[4].id,
+    dog_id: dogs[9].id, # Molly
+    status: 'Submitted',
+    created_at: '2024-03-10',
+    updated_at: '2024-03-11',
+    read_profile: true,
+    address: "1122 Dachshund Dr, London, ON",
+    current_pets: false,
+    felony_conviction: false,
+    pet_prohibition: false,
+    previous_adoption: true,
+    adoption_details: "Previously adopted a senior dog who passed away from natural causes",
+    residence_type: "Rent",
+    landlord_permission: true,
+    occupation: "Retired Librarian",
+    adoption_reason: "Seeking a gentle companion to share peaceful days with",
+    dog_experience: "Decades of dog ownership, experience with small breeds",
+    stimulation_plan: "Short daily walks, plenty of indoor play and cuddles",
+    household_children: false,
+    household_allergies: false,
+    household_agreement: true,
+    sleeping_arrangement: "Dog bed in my bedroom, but welcome in my bed",
+    vet_frequency: "Regular checkups, as needed for any health concerns",
+    dog_age: ["Adult"],
+    dog_size: ["Small"],
+    dog_energy_level: "Medium",
+    dog_medical_conditions: "No"
+  }
+]
+
+applications = applications_data.map do |application_data|
+  Application.create!(application_data)
 end

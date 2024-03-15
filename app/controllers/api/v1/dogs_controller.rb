@@ -35,34 +35,6 @@ class Api::V1::DogsController < ApplicationController
     render json: { status: 'success', message: message, dog_id: @dog.id, is_favourite: is_favourite}
   end
 
-  # Fetch user's favourites
-  # def user_favourites
-  #   @favourites = @current_user.favourite_dogs
-  #   render json: @favourites
-  # end
-
-  # Admin only
-  
-  # Add a new dog to the database
-  def create
-    @dog = Dog.new(dog_params)
-    if @dog.save
-      render json: @dog, status: :created
-    else
-      render json: @dog.errors, status: :unprocessable_entity
-    end
-  end
-
-  # Edit a dog's details
-  def update
-    @dog = Dog.find(params[:id])
-    if @dog.update(dog_params)
-      render json: @dog
-    else
-      render json: @dog.errors, status: :unprocessable_entity
-    end
-  end
-
   private
 
   def dog_params

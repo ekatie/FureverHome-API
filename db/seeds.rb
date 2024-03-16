@@ -510,11 +510,10 @@ end
 applications_data = [
   {
     user_id: adopter_users[0].id,
-    dog_id: dogs[0].id, # Acorn
     status: 'Pending',
     created_at: '2024-02-28',
     updated_at: '2024-03-02',
-    read_profile: true,
+    read_profile: false,
     address: "123 Bark Street, Toronto, ON",
     current_pets: false,
     felony_conviction: false,
@@ -538,11 +537,10 @@ applications_data = [
   },
   {
     user_id: adopter_users[1].id,
-    dog_id: dogs[6].id, # Luna
     status: 'Pending Dog Selection',
     created_at: '2024-03-01',
     updated_at: '2024-03-01',
-    read_profile: true,
+    read_profile: false,
     address: "345 Moonlight Road, Toronto, ON",
     current_pets: true,
     current_pets_details: "An old cat who prefers to keep to herself",
@@ -567,7 +565,7 @@ applications_data = [
   },
   {
     user_id: adopter_users[2].id,
-    dog_id: dogs[7].id, # Max
+    dog_id: dogs[9].id, # Max
     status: 'Submitted',
     created_at: '2024-02-20',
     updated_at: '2024-02-23',
@@ -596,7 +594,7 @@ applications_data = [
   },
   {
     user_id: adopter_users[3].id,
-    dog_id: dogs[8].id, # Buddy
+    dog_id: dogs[10].id, # Buddy
     status: 'Submitted',
     created_at: '2024-03-05',
     updated_at: '2024-03-06',
@@ -625,28 +623,28 @@ applications_data = [
   },
   {
     user_id: adopter_users[4].id,
-    dog_id: dogs[9].id, # Molly
+    dog_id: dogs[13].id, # Molly
     status: 'Submitted',
     created_at: '2024-03-10',
     updated_at: '2024-03-11',
-    read_profile: true,
+    read_profile: false,
     address: "1122 Dachshund Dr, London, ON",
     current_pets: false,
     felony_conviction: false,
     pet_prohibition: false,
     previous_adoption: true,
-    adoption_details: "Previously adopted a senior dog who passed away from natural causes",
+    adoption_details: "A few years ago, I had the joy of adopting an elderly dog who became my closest companion. Despite the challenges of her age, the experience was profoundly rewarding, teaching me patience and the deep bond formed through care. Sadly, she passed away from natural causes, leaving a quiet space in my home and heart that I now feel ready to fill again.",
     residence_type: "Rent",
     landlord_permission: true,
     occupation: "Retired Librarian",
-    adoption_reason: "Seeking a gentle companion to share peaceful days with",
-    dog_experience: "Decades of dog ownership, experience with small breeds",
-    stimulation_plan: "Short daily walks, plenty of indoor play and cuddles",
+    adoption_reason: "Now that I'm retired, I find the house too quiet and miss the companionship that a dog provides. I'm seeking a gentle companion to share in my daily activities, from leisurely walks in the park to cozy evenings at home. I believe a dog would bring joy and structure to my days, helping me stay active and connected.",
+    dog_experience: "Having owned dogs for several decades, I've gained a wealth of experience in caring for them through all stages of their lives. From energetic puppies to serene seniors, I've navigated various challenges and delights that come with dog ownership, learning about training, health care, and the unique personalities of each dog.",
+    stimulation_plan: "I plan to provide a loving and stimulating environment for my new companion, with short daily walks in the morning and evening to explore our neighborhood. Indoors, we'll have plenty of playtime with toys and puzzles that encourage mental engagement. I'm also looking forward to teaching new tricks and commands, ensuring our days are filled with learning and laughter.",
     household_children: false,
     household_allergies: false,
     household_agreement: true,
-    sleeping_arrangement: "Dog bed in my bedroom, but welcome in my bed",
-    vet_frequency: "Regular checkups, as needed for any health concerns",
+    sleeping_arrangement: "The dog will have a cozy bed in my bedroom, ensuring they feel secure and loved from the very start. While I prefer they start the night in their own space, they're welcome to join me on my bed if they need extra comfort.",
+    vet_frequency: "I believe in proactive healthcare for pets, planning regular checkups to monitor their well-being, alongside any necessary visits for vaccinations or sudden health concerns. My approach is to treat any medical issues with prompt attention, ensuring a high quality of life.",
     dog_age: ["Adult"],
     dog_size: ["Small"],
     dog_energy_level: "Medium",

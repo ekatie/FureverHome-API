@@ -6,7 +6,7 @@ class Application < ApplicationRecord
   
   VALID_RESIDENCE_TYPES = ['Rent', 'Own'].freeze
   VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High', 'Flexible'].freeze
-  VALID_STATUSES = ['Not Started', 'Pending', 'Pending Dog Selection', 'Submitted', 'Under Review', 'Approved', 'Rejected', 'Cancelled'].freeze
+  VALID_STATUSES = ['Not Started', 'Pending', 'Pending Dog Selection', 'Submitted', 'Under Review', 'Pending Interview Booking', 'Interview Booked', 'Pending Meet and Greet Booking', 'Meet and Greet Booked', 'Pending Adoption Date Booking', 'Adoption Date Booked', 'Awaiting Payment', 'Payment Received', 'Awaiting Contract Signature', 'Adoption Complete', 'Approved', 'Rejected', 'Cancelled'].freeze
 
   before_validation :set_default_status, on: :create
 

@@ -7,6 +7,7 @@ class Dog < ApplicationRecord
 
   # Associations
   has_many :dog_images, dependent: :destroy
+  accepts_nested_attributes_for :dog_images, allow_destroy: true
   has_many :applications, dependent: :destroy
   has_many :users, through: :applications
     has_many :favourites, dependent: :destroy
@@ -39,4 +40,39 @@ class Dog < ApplicationRecord
     user && user.favourite_dogs.exists?(self.id)
   end
 
+  def dog_images_attributes=(attributes)
+    puts "Received attributes: #{attributes.inspect}"
+    # Handle new images or updates to existing images
+    attributes.each do |image_attributes|
+      puts "Current image_attributes: #{image_attributes.inspect}"
+      next if image_attributes[:_destroy] == '1' && image_attributes[:id].blank? # Skip if marked for destruction without an ID
+  
+      if image_attributes[:id].present?
+        # Update existing image
+        existing_image = dog_images.find(image_attributes[:id])
+        next if image_attributes[:_destroy] == '1' # Destroy marked image
+        existing_image.update(is_default: image_attributes[:is_default], url: image_attributes[:url])
+      else
+        # Create new image unless it's marked for destruction
+        next if image_attributes[:_destroy] == '1'
+        dog_images.build(url: image_attributes[:url], is_default: image_attributes[:is_default])
+      end
+    end
+  
+    manage_default_image
+  end
+  
+  private
+  
+  def manage_default_image
+    # If multiple images are set as default, keep the latest marked as default
+    default_images = dog_images.select(&:is_default)
+    if default_images.size > 1
+      # Sort by updated_at to keep the latest as default
+      sorted_by_update = default_images.sort_by(&:updated_at)
+      # Unset all but the latest
+      sorted_by_update[0...-1].each { |image| image.update(is_default: false) }
+    end
+  end
+  
 end

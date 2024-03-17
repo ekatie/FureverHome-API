@@ -16,11 +16,9 @@ class CreateDogs < ActiveRecord::Migration[7.0]
       t.string :foster_location, null: false
       t.text :medical_conditions, null: false
       t.decimal :adoption_fee, null: false
-      t.integer :default_image_id, add_index: true
 
       t.timestamps
     end
-    add_index :dogs, :default_image_id
 
     add_check_constraint :dogs, "good_with_dogs IN ('Yes', 'No', 'Sometimes', 'Untested')", name: 'check_good_with_dogs_values'
     add_check_constraint :dogs, "good_with_cats IN ('Yes', 'No', 'Sometimes', 'Untested')", name: 'check_good_with_cats_values'

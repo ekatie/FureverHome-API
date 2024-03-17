@@ -92,10 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_232851) do
     t.string "foster_location", null: false
     t.text "medical_conditions", null: false
     t.decimal "adoption_fee", null: false
-    t.integer "default_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["default_image_id"], name: "index_dogs_on_default_image_id"
     t.check_constraint "energy_level::text = ANY (ARRAY['Low'::character varying, 'Medium'::character varying, 'High'::character varying, 'Very High'::character varying]::text[])", name: "check_dogs_energy_level"
     t.check_constraint "good_with_cats::text = ANY (ARRAY['Yes'::character varying, 'No'::character varying, 'Sometimes'::character varying, 'Untested'::character varying]::text[])", name: "check_good_with_cats_values"
     t.check_constraint "good_with_dogs::text = ANY (ARRAY['Yes'::character varying, 'No'::character varying, 'Sometimes'::character varying, 'Untested'::character varying]::text[])", name: "check_good_with_dogs_values"
@@ -131,7 +129,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_232851) do
   add_foreign_key "application_dog_matches", "dogs"
   add_foreign_key "applications", "users"
   add_foreign_key "dog_images", "dogs"
-  add_foreign_key "dogs", "dog_images", column: "default_image_id"
   add_foreign_key "favourites", "dogs", on_delete: :cascade
   add_foreign_key "favourites", "users", on_delete: :cascade
 end

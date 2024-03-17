@@ -58,12 +58,12 @@ dogs_data = [
     good_with_cats: "No",
     good_with_kids: "Sometimes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_5.jpg?raw=true"
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_1.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_2.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_3.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_4.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Acorn_5.jpg?raw=true", is_default: false }
     ]
   },
   { 
@@ -94,12 +94,12 @@ dogs_data = [
     good_with_cats: "Untested",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_5.jpg?raw=true"
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_1.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_2.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_3.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_4.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Belle_5.jpg?raw=true", is_default: false }
     ]
   },
   { 
@@ -118,12 +118,13 @@ dogs_data = [
     good_with_cats: "Untested",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_3.jpg?raw=true"
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_4.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_1.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_2.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Scotti_3.jpg?raw=true", is_default: false }
     ]
+    
   },
   { 
     name: "Krash", 
@@ -151,13 +152,14 @@ dogs_data = [
     good_with_cats: "Untested",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_5.jpg?raw=true"
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_2.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_1.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_4.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_3.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Krash_5.jpg?raw=true", is_default: false }
     ]
+    
   },
   { 
     name: "Charm", 
@@ -185,13 +187,13 @@ dogs_data = [
     good_with_cats: "Untested",
     good_with_kids: "Untested",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_5.jpg?raw=true"
-    ]
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_4.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_1.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_2.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_3.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Charm_5.jpg?raw=true", is_default: false }
+    ]    
   },
   { 
     name: "Piper", 
@@ -217,13 +219,13 @@ dogs_data = [
     good_with_cats: "Yes",
     good_with_kids: "Sometimes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_5.jpg?raw=true"
-    ]
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_2.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_1.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_3.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_4.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Piper_5.jpg?raw=true", is_default: false }
+    ]    
   },
   { 
     name: "Ruby-Jo", 
@@ -255,12 +257,12 @@ dogs_data = [
     good_with_cats: "No",
     good_with_kids: "No",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_5.jpg?raw=true"
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_3.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_1.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_2.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_4.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Ruby-Jo_5.jpg?raw=true", is_default: false }
     ]
   },
   { 
@@ -281,12 +283,12 @@ dogs_data = [
     good_with_cats: "No",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_4.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_3.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_1.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_2.jpg?raw=true",
-      "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_5.jpg?raw=true"
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_4.jpg?raw=true", is_default: true },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_3.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_1.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_2.jpg?raw=true", is_default: false },
+      { url: "https://github.com/ekatie/FureverHome/blob/main/src/assets/Bella_5.jpg?raw=true", is_default: false },
     ]
   },
   {
@@ -305,8 +307,8 @@ dogs_data = [
     good_with_cats: "No",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Luna.jpg?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Luna.jpg?raw=true", is_default: true },
     ]
   },
   {
@@ -325,8 +327,8 @@ dogs_data = [
     good_with_cats: "Yes",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Max.jpeg?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Max.jpeg?raw=true", is_default: true },
     ]
   },
   {
@@ -345,8 +347,8 @@ dogs_data = [
     good_with_cats: "Sometimes",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Buddy.png?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Buddy.png?raw=true", is_default: true },
     ]
   },
   {
@@ -365,8 +367,8 @@ dogs_data = [
     good_with_cats: "No",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Sophie.jpg?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Sophie.jpg?raw=true", is_default: true },
     ]
   },
   {
@@ -385,8 +387,8 @@ dogs_data = [
     good_with_cats: "Sometimes",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Rocky.jpg?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Rocky.jpg?raw=true", is_default: true },
     ]
   },
   {
@@ -405,8 +407,8 @@ dogs_data = [
     good_with_cats: "Yes",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Molly.png?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Molly.png?raw=true", is_default: true },
     ]
   },
   {
@@ -425,8 +427,8 @@ dogs_data = [
     good_with_cats: "Yes",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Charlie.png?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Charlie.png?raw=true", is_default: true },
     ]
   },
   {
@@ -445,8 +447,8 @@ dogs_data = [
     good_with_cats: "Yes",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Daisy.jpg?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Daisy.jpg?raw=true", is_default: true },
     ]
   },
   {
@@ -465,47 +467,16 @@ dogs_data = [
     good_with_cats: "No",
     good_with_kids: "Yes",
     social_media_link: "https://www.instagram.com/fosteringkatie",
-    images: [
-      "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Rex.jpg?raw=true",
+    dog_images_attributes: [
+      { url: "https://github.com/ekatie/FureverHome/blob/gh-pages/src/assets/Rex.jpg?raw=true", is_default: true },
     ]
   }
 ]
 
 dogs = dogs_data.map do |dog_data|
-  dog = Dog.create!(dog_data.except(:images))
-  dog_data[:images].each do |image_url|
-    DogImage.create!(dog_id: dog.id, url: image_url, is_default: dog_data[:images].first == image_url)
-  end
-  dog
+  dog = Dog.create!(dog_data)
 end
 
-# dogs_data.each do |dog_data|
-#   dog = Dog.create!(
-#     name: dog_data[:name], 
-#     age: dog_data[:age], 
-#     sex: dog_data[:sex], 
-#     breed: dog_data[:breed], 
-#     size: dog_data[:size], 
-#     description: dog_data[:description], 
-#     status: dog_data[:status], 
-#     energy_level: dog_data[:energy_level], 
-#     foster_location: dog_data[:foster_location], 
-#     medical_conditions: dog_data[:medical_conditions], 
-#     adoption_fee: dog_data[:adoption_fee],
-#     good_with_dogs: dog_data[:good_with_dogs],
-#     good_with_cats: dog_data[:good_with_cats],
-#     good_with_kids: dog_data[:good_with_kids],
-#     social_media_link: dog_data[:social_media_link],
-#   )
-
-#   dog_data[:images].each_with_index do |image_url, index|
-#     DogImage.create!(
-#       dog_id: dog.id, 
-#       url: image_url, 
-#       is_default: index.zero? # Mark the first image as default
-#     )
-#   end
-# end
 
 applications_data = [
   {

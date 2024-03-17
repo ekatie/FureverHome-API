@@ -13,4 +13,14 @@ class DogSerializer < ActiveModel::Serializer
     Rails.logger.info "Current scope (user): #{scope.inspect}"
     object.is_favourite(scope)
   end
+
+  def images
+    object.dog_images.map do |image|
+      {
+        url: image.url,
+        is_default: image.is_default,
+      }
+    end
+  end
+  
 end

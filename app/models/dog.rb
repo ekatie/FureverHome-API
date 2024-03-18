@@ -32,47 +32,69 @@ class Dog < ApplicationRecord
   validates :medical_conditions, presence: true
   validates :adoption_fee, presence: true, numericality: { greater_than_or_equal_to: 0 }
   
-  def default_image_url
-    dog_images.find_by(is_default: true)&.url
-  end
+  after_save :manage_default_image
 
   def is_favourite(user)
     user && user.favourite_dogs.exists?(self.id)
   end
 
-  def dog_images_attributes=(attributes)
-    puts "Received attributes: #{attributes.inspect}"
-    # Handle new images or updates to existing images
-    attributes.each do |image_attributes|
-      puts "Current image_attributes: #{image_attributes.inspect}"
-      next if image_attributes[:_destroy] == '1' && image_attributes[:id].blank? # Skip if marked for destruction without an ID
+  # def dog_images_attributes=(attributes)
+  #   # Track IDs of incoming images
+  #   incoming_ids = attributes.filter_map { |a| a[:id] unless a[:_destroy] == '1' }.compact
   
-      if image_attributes[:id].present?
-        # Update existing image
-        existing_image = dog_images.find(image_attributes[:id])
-        next if image_attributes[:_destroy] == '1' # Destroy marked image
-        existing_image.update(is_default: image_attributes[:is_default], url: image_attributes[:url])
-      else
-        # Create new image unless it's marked for destruction
-        next if image_attributes[:_destroy] == '1'
-        dog_images.build(url: image_attributes[:url], is_default: image_attributes[:is_default])
+  #   # Destroy images that are not in the incoming IDs and are already associated
+  #   dog_images.where.not(id: incoming_ids).destroy_all
+  
+  #   attributes.each do |image_attributes|
+  #     if image_attributes[:id].present?
+  #       # Find and update existing image
+  #       existing_image = dog_images.find_by(id: image_attributes[:id])
+  #       if image_attributes[:_destroy] == '1'
+  #         existing_image&.destroy
+  #       else
+  #         existing_image&.update(image_attributes.slice(:url, :is_default))
+  #       end
+  #     elsif image_attributes[:_destroy] != '1'
+  #       # Create new image unless it's marked for destruction
+  #       dog_images.build(image_attributes.slice(:url, :is_default))
+  #     end
+  #   end
+  
+  #   manage_default_image
+  # end
+  
+  def dog_images_attributes=(attributes)
+    # Filter out any attributes marked for destruction or without an id (new images)
+    existing_image_ids = attributes.reject { |attr| attr['_destroy'] == '1' || attr['id'].blank? }.map { |attr| attr['id'].to_i }
+  
+    # Delete images that are not in the list of existing image ids or are marked for destruction
+    dog_images.where.not(id: existing_image_ids).or(dog_images.where(id: attributes.select { |attr| attr['_destroy'] == '1' }.map { |attr| attr['id'].to_i })).destroy_all
+  
+    attributes.each do |image_attributes|
+      if image_attributes['id'].present? && image_attributes['_destroy'] != '1'
+        # Update existing images
+        existing_image = dog_images.find_by(id: image_attributes['id'].to_i)
+        existing_image.update(image_attributes.except('id', '_destroy')) if existing_image
+      elsif image_attributes['_destroy'] != '1'
+        # Add new images
+        dog_images.build(image_attributes.except('_destroy'))
       end
     end
   
-    manage_default_image
   end
   
-  private
+
+  # private
   
   def manage_default_image
     # If multiple images are set as default, keep the latest marked as default
     default_images = dog_images.select(&:is_default)
     if default_images.size > 1
       # Sort by updated_at to keep the latest as default
-      sorted_by_update = default_images.sort_by(&:updated_at)
+      sorted_by_update = default_images.reject { |image| image.updated_at.nil? }.sort_by(&:updated_at)
       # Unset all but the latest
       sorted_by_update[0...-1].each { |image| image.update(is_default: false) }
     end
-  end
+  end  
   
 end

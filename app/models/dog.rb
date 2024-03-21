@@ -38,31 +38,6 @@ class Dog < ApplicationRecord
     user && user.favourite_dogs.exists?(self.id)
   end
 
-  # def dog_images_attributes=(attributes)
-  #   # Track IDs of incoming images
-  #   incoming_ids = attributes.filter_map { |a| a[:id] unless a[:_destroy] == '1' }.compact
-  
-  #   # Destroy images that are not in the incoming IDs and are already associated
-  #   dog_images.where.not(id: incoming_ids).destroy_all
-  
-  #   attributes.each do |image_attributes|
-  #     if image_attributes[:id].present?
-  #       # Find and update existing image
-  #       existing_image = dog_images.find_by(id: image_attributes[:id])
-  #       if image_attributes[:_destroy] == '1'
-  #         existing_image&.destroy
-  #       else
-  #         existing_image&.update(image_attributes.slice(:url, :is_default))
-  #       end
-  #     elsif image_attributes[:_destroy] != '1'
-  #       # Create new image unless it's marked for destruction
-  #       dog_images.build(image_attributes.slice(:url, :is_default))
-  #     end
-  #   end
-  
-  #   manage_default_image
-  # end
-  
   def dog_images_attributes=(attributes)
     # Filter out any attributes marked for destruction or without an id (new images)
     existing_image_ids = attributes.reject { |attr| attr['_destroy'] == '1' || attr['id'].blank? }.map { |attr| attr['id'].to_i }

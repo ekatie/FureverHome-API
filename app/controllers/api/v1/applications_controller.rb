@@ -113,18 +113,20 @@ def booking
     unless start_time_str.nil?
       start_time = DateTime.parse(start_time_str)
 
-  # Update the application based on its current status
-  case application.status
-  when "Pending Interview Booking"
+   # Update the application based on its current status
+   case application.status
+   when "Pending Interview Booking"
     application.update(interview_date: start_time, status: 'Interview Booked')
-  when "Pending Meet and Greet Booking"
+   when "Pending Meet and Greet Booking"
     application.update(meet_greet_date: start_time, status: 'Meet and Greet Booked')
-  when "Pending Adoption Date Booking"
+   when "Pending Adoption Date Booking"
     application.update(adoption_date: start_time, status: 'Adoption Date Booked')
-  else
+   else
     # Log or handle unexpected application status
     Rails.logger.info "Unexpected application status: #{application.status}"
+   end
   end
+ end
 end
 
   private

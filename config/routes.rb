@@ -19,6 +19,7 @@ Rails.application.routes.draw do
           put 'cancel'
           post 'select_match'
           get 'matches'
+          put 'matches'
           patch 'booking', to: 'applications#booking'
         end
       end

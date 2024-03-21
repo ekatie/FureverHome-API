@@ -16,12 +16,10 @@ Rails.application.routes.draw do
       # Application resource routes
       resources :applications, only: [:create, :show, :update, :index] do
         member do
-          post 'cancel'
+          put 'cancel'
           post 'select_match'
-          post 'schedule_interview'
-          post 'schedule_virtual_meet_greet'
-          post 'schedule_adoption_day'
           get 'matches'
+          patch 'booking', to: 'applications#booking'
         end
       end
       

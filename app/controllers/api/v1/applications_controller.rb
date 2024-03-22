@@ -1,10 +1,11 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches]
-  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches]
+  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment]
+  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches, :payment]
 
   require 'net/http'
   require 'uri'
   require 'base64'
+  require 'stripe'
   
   def new
   end
@@ -113,20 +114,44 @@ def booking
     unless start_time_str.nil?
       start_time = DateTime.parse(start_time_str)
 
-   # Update the application based on its current status
-   case application.status
-   when "Pending Interview Booking"
-    application.update(interview_date: start_time, status: 'Interview Booked')
-   when "Pending Meet and Greet Booking"
-    application.update(meet_greet_date: start_time, status: 'Meet and Greet Booked')
-   when "Pending Adoption Date Booking"
-    application.update(adoption_date: start_time, status: 'Adoption Date Booked')
-   else
-    # Log or handle unexpected application status
-    Rails.logger.info "Unexpected application status: #{application.status}"
-   end
+    # Update the application based on its current status
+    case application.status
+    when "Pending Interview Booking"
+      application.update(interview_date: start_time, status: 'Interview Booked')
+    when "Pending Meet and Greet Booking"
+      application.update(meet_greet_date: start_time, status: 'Meet and Greet Booked')
+    when "Pending Adoption Date Booking"
+      application.update(adoption_date: start_time, status: 'Adoption Date Booked')
+    else
+      # Log or handle unexpected application status
+      Rails.logger.info "Unexpected application status: #{application.status}"
+    end
   end
  end
+end
+
+def payment
+  application = current_user.applications.find(params[:id])
+  dog = application.dog
+
+  # Create a Stripe PaymentIntent
+  payment_intent = Stripe::PaymentIntent.create({
+    amount: (dog.adoption_fee * 100).round,
+    currency: 'cad',
+    description: "Adoption fee for #{dog.name}",
+    payment_method_types: ['card'],
+    metadata: {
+      dog_id: dog.id,
+      application_id: application.id
+    }
+  })
+
+  Rails.logger.info "PaymentIntent created: #{payment_intent.client_secret}"
+  render json: { clientSecret: payment_intent.client_secret }
+
+  rescue Stripe::StripeError => e
+    render json: { error: e.message }, status: :unprocessable_entity
+
 end
 
   private

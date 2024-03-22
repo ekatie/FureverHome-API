@@ -1,6 +1,6 @@
 class Api::V1::DogsController < ApplicationController
-  before_action :set_current_user, only: [:index, :show]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_current_user, only: [:index, :show, :update]
+  before_action :authenticate_user!, except: [:index, :show, :update]
     
   # View a dog's details
   def show
@@ -35,6 +35,16 @@ class Api::V1::DogsController < ApplicationController
     render json: { status: 'success', message: message, dog_id: @dog.id, is_favourite: is_favourite}
   end
 
+  # Update a dog's status
+  def update
+    @dog = Dog.find(params[:id])
+    if @dog.update(dog_params)
+      render json: @dog, status: :ok
+    else
+      render json: { errors: @dog.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+  
   private
 
   def dog_params

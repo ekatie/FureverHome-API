@@ -21,11 +21,12 @@ Rails.application.routes.draw do
           get 'matches'
           put 'matches'
           patch 'booking', to: 'applications#booking'
+          post 'payment', to: 'applications#payment'
         end
       end
       
       # Dogs resource routes
-      resources :dogs, only: [:show, :index] do
+      resources :dogs, only: [:show, :index, :update] do
         member do
           post 'favourite'
         end

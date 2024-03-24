@@ -170,6 +170,7 @@ def generate_contract
 end
 
 def upload_signed_contract
+  Rails.logger.info "Uploading signed contract for application #{params[:id]}"
   application = current_user.applications.find(params[:id])
   application.signed_contract.attach(params[:signed_contract])
   

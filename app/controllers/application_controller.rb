@@ -14,11 +14,9 @@ class ApplicationController < ActionController::API
 
     def set_current_user
       token = request.headers['Authorization']&.split(' ')&.last
-      Rails.logger.info "Received Token: #{token}"
       decoded_token = JwtAuthenticationController.new.verify_token(token)
       Rails.logger.info "Decoded Token: #{decoded_token}"
       @current_user = User.find(decoded_token['user_id']) if decoded_token
-      Rails.logger.info "Current User: #{@current_user}"
     end
 
     def authenticate_user!

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
           put 'matches'
           patch 'booking', to: 'applications#booking'
           post 'payment', to: 'applications#payment'
+          get 'generate_contract', to: 'applications#generate_contract'
+          put 'signed_contract', to: 'applications#upload_signed_contract'
         end
       end
       

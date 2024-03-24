@@ -28,6 +28,9 @@ class CreateApplications < ActiveRecord::Migration[7.0]
       t.boolean :household_agreement
       t.text :sleeping_arrangement
       t.text :vet_frequency
+      t.boolean :is_contract_signed, default: false
+      t.boolean :is_fee_paid, default: false
+      t.binary :signed_contract
 
       t.timestamps
     end

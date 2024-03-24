@@ -14,7 +14,7 @@ class Dog < ApplicationRecord
   has_many :favourited_by_users, through: :favourites, source: :user
 
   # Scopes
-  scope :available, -> { where(status: 'Available') }
+  scope :available, -> { where(status: ['Available', 'Applications Being Reviewed']) }
 
   # Validations
   validates :name, presence: true

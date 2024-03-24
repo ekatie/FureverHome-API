@@ -1,6 +1,6 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment]
-  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches, :payment]
+  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment, :generate_contract, :upload_signed_contract]
+  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches, :payment, :generate_contract, :upload_signed_contract]
 
   require 'net/http'
   require 'uri'
@@ -146,18 +146,44 @@ def payment
     }
   })
 
-  Rails.logger.info "PaymentIntent created: #{payment_intent.client_secret}"
   render json: { clientSecret: payment_intent.client_secret }
 
   rescue Stripe::StripeError => e
     render json: { error: e.message }, status: :unprocessable_entity
+end
 
+def generate_contract
+  application = current_user.applications.find(params[:id])
+
+  if application.nil?
+    render json: { error: 'Application not found' }, status: :not_found
+    return
+  end
+
+  output_path = PdfFillerService.fill_adoption_agreement(application)
+
+  send_file output_path, type: 'application/pdf', disposition: 'inline'
+
+  rescue StandardError => e
+  Rails.logger.error "Failed to generate contract: #{e.message}"
+  render json: { error: 'Failed to generate contract' }, status: :internal_server_error
+end
+
+def upload_signed_contract
+  application = current_user.applications.find(params[:id])
+  application.signed_contract.attach(params[:signed_contract])
+  
+  if application.save
+    render json: { message: 'Contract uploaded successfully' }, status: :ok
+  else
+    render json: { errors: application.errors.full_messages }, status: :unprocessable_entity
+  end
 end
 
   private
 
   def application_params
-    params.require(:application).permit(:status, :read_profile, :address, :current_pets, :current_pets_details, :felony_conviction, :felony_details, :pet_prohibition, :prohibition_details, :previous_adoption, :adoption_details, :residence_type, :landlord_permission, :occupation, :adoption_reason, :dog_experience, :stimulation_plan, :household_children, :household_allergies, :household_agreement, :sleeping_arrangement, :vet_frequency, {dog_age: []}, {dog_size: []}, :dog_energy_level, :dog_medical_conditions, :dog_id, :interview_date, :meet_greet_date, :adoption_date)
+    params.require(:application).permit(:status, :read_profile, :address, :current_pets, :current_pets_details, :felony_conviction, :felony_details, :pet_prohibition, :prohibition_details, :previous_adoption, :adoption_details, :residence_type, :landlord_permission, :occupation, :adoption_reason, :dog_experience, :stimulation_plan, :household_children, :household_allergies, :household_agreement, :sleeping_arrangement, :vet_frequency, {dog_age: []}, {dog_size: []}, :dog_energy_level, :dog_medical_conditions, :dog_id, :interview_date, :meet_greet_date, :adoption_date, :is_contract_signed, :is_fee_paid, :signed_contract)
   end
 
 end

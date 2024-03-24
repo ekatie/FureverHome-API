@@ -3,6 +3,7 @@ class Application < ApplicationRecord
   belongs_to :dog, optional: true
   serialize :dog_size, Array
   serialize :dog_age, Array
+  has_one_attached :signed_contract
   
   VALID_RESIDENCE_TYPES = ['Rent', 'Own'].freeze
   VALID_ENERGY_LEVELS = ['Low', 'Medium', 'High', 'Very High', 'Flexible'].freeze

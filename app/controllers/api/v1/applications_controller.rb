@@ -1,6 +1,6 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment, :generate_contract, :upload_signed_contract]
-  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches, :payment, :generate_contract, :upload_signed_contract]
+  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment, :generate_contract, :upload_signed_contract, :download_contract]
+  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches, :payment, :generate_contract, :upload_signed_contract, :download_contract]
 
   require 'net/http'
   require 'uri'
@@ -169,7 +169,7 @@ def generate_contract
   render json: { error: 'Failed to generate contract' }, status: :internal_server_error
 end
 
-def upload_signed_contract
+def signed_contract
   Rails.logger.info "Uploading signed contract for application #{params[:id]}"
   application = current_user.applications.find(params[:id])
   application.signed_contract.attach(params[:signed_contract])
@@ -179,6 +179,22 @@ def upload_signed_contract
   else
     render json: { errors: application.errors.full_messages }, status: :unprocessable_entity
   end
+end
+
+def download_contract
+  Rails.logger.info "Downloading signed contract for application #{params[:id] and current_user.id}"
+  application = current_user.applications.find(params[:id])
+
+  if application&.signed_contract&.attached?
+    send_data application.signed_contract.download,
+              filename: application.signed_contract.filename.to_s,
+              type: application.signed_contract.content_type,
+              disposition: 'attachment'
+  else
+    render json: { error: 'Contract not found' }, status: :not_found
+  end
+  rescue ActiveRecord::RecordNotFound
+  render json: { error: 'Application not found' }, status: :not_found
 end
 
   private

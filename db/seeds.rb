@@ -10,7 +10,7 @@ Application.destroy_all
 user_katie = User.create!(
   email: 'katie@adopt.com',
   user_type: 'adopter',
-  name: 'Katie Kay',
+  name: 'Ivana Dognik',
   date_of_birth: '1988-04-05',
   phone: '123-456-7890',
   password: 'adopt'
@@ -20,7 +20,7 @@ user_katie = User.create!(
 user_admin = User.create!(
   email: 'katie@admin.com',
   user_type: 'admin',
-  name: 'Katie Nova',
+  name: 'Rescue Admin',
   date_of_birth: '1988-04-05',
   phone: '987-654-3210',
   password: 'admin'

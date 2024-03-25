@@ -32,7 +32,7 @@ def self.match(application, dogs)
     if application.dog_energy_level == dog.energy_level
       match_score += 2
     elsif application.dog_energy_level == 'Flexible'
-      match_score += 1
+      match_score += 2
     else
       match_score -= 1
     end

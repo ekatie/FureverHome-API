@@ -1,6 +1,6 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment, :generate_contract, :upload_signed_contract, :download_contract]
-  before_action :check_adopter!, only: [:create, :cancel, :booking, :matches, :payment, :generate_contract, :upload_signed_contract, :download_contract]
+  before_action :authenticate_user!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment, :generate_contract, :signed_contract, :download_contract]
+  before_action :check_adopter!, only: [:create, :update, :cancel, :show, :booking, :matches, :payment, :generate_contract, :signed_contract, :download_contract]
 
   require 'net/http'
   require 'uri'
@@ -170,7 +170,6 @@ def generate_contract
 end
 
 def signed_contract
-  Rails.logger.info "Uploading signed contract for application #{params[:id]}"
   application = current_user.applications.find(params[:id])
   application.signed_contract.attach(params[:signed_contract])
   

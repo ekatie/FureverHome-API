@@ -172,6 +172,9 @@ end
 def signed_contract
   application = current_user.applications.find(params[:id])
   application.signed_contract.attach(params[:signed_contract])
+
+  dog = application.dog
+  dog.update(status: 'Adopted')
   
   if application.save
     render json: { message: 'Contract uploaded successfully' }, status: :ok
